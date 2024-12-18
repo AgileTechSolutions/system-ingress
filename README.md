@@ -11,11 +11,18 @@ A Matrix-style hacking simulation game where you attempt to infiltrate a secured
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/Agile-Tech-System-Ingress-Matrix.git
-cd Agile-Tech-System-Ingress-Matrix
+git clone https://github.com/AgileTechSolutions/system-ingress.git
+cd system-ingress
 ```
 
-2. No additional dependencies are required as the game uses Python's standard library.
+2. Install required dependencies:
+```bash
+# For Linux/macOS users:
+pip3 install playsound
+
+# For Windows users:
+# No additional dependencies needed as winsound is part of Python standard library
+```
 
 ## Running the Game
 
@@ -23,6 +30,10 @@ cd Agile-Tech-System-Ingress-Matrix
 2. Navigate to the game directory
 3. Run the game using Python:
 ```bash
+# For Linux/macOS:
+python3 system_ingress.py
+
+# For Windows:
 python system_ingress.py
 ```
 
@@ -74,7 +85,7 @@ Once you successfully bypass all security layers, you'll gain access to the main
 
 - Matrix-style interface with falling green characters
 - Four unique security challenges
-- Sound effects for feedback
+- Cross-platform sound effects for feedback
 - Progressive difficulty
 - Hint system
 - Real-time visual feedback
@@ -85,8 +96,19 @@ Once you successfully bypass all security layers, you'll gain access to the main
 The game is built using:
 - Python 3.x
 - Tkinter for GUI
-- Standard library components only
+- Cross-platform sound support (winsound on Windows, playsound on Linux/macOS)
 - Object-oriented design principles
+
+## Platform-Specific Notes
+
+### Windows
+- Uses built-in winsound module for sound effects
+- No additional sound dependencies required
+
+### Linux/macOS
+- Uses playsound library for sound effects
+- Requires installation of playsound package (`pip3 install playsound`)
+- Sound effects are optional and the game will run without them if playsound is not installed
 
 ## Contributing
 

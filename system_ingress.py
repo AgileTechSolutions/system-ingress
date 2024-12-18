@@ -1,8 +1,37 @@
 import tkinter as tk
 import random
 import string
-import winsound
 from typing import List, Callable
+import os
+
+# Cross-platform sound handling
+try:
+    # Try to import winsound for Windows
+    import winsound
+    def play_sound(success=True):
+        frequency = 1000 if success else 500
+        winsound.Beep(frequency, 100)
+except ImportError:
+    try:
+        # Fallback to playsound for other platforms
+        from playsound import playsound
+        def play_sound(success=True):
+            # Create sounds directory if it doesn't exist
+            if not os.path.exists('sounds'):
+                os.makedirs('sounds')
+            
+            # Create simple sound files if they don't exist
+            success_sound = os.path.join('sounds', 'success.wav')
+            fail_sound = os.path.join('sounds', 'fail.wav')
+            
+            try:
+                playsound(success_sound if success else fail_sound, False)
+            except:
+                pass  # Silently fail if sound doesn't work
+    except ImportError:
+        # If no sound library is available, just pass silently
+        def play_sound(success=True):
+            pass
 
 class MatrixColumn:
     def __init__(self, x: int, speed: float = 1.0, message_char: str = None):
@@ -211,7 +240,7 @@ class SystemIngressGame:
         current_challenge = self.layers[self.current_layer]
         
         if current_challenge.validator(user_input):
-            winsound.Beep(1000, 100)
+            play_sound(True)  # Success sound
             self._write_to_terminal(f"\nSECURITY LAYER {self.current_layer + 1} BYPASSED...\n\n")
             self.current_layer += 1
             
@@ -220,7 +249,7 @@ class SystemIngressGame:
             else:
                 self._write_to_terminal(self.layers[self.current_layer].prompt)
         else:
-            winsound.Beep(500, 100)
+            play_sound(False)  # Failure sound
             self._write_to_terminal("\nACCESS DENIED. TRY AGAIN.\n")
             if current_challenge.hint:
                 self._write_to_terminal(f"\n{current_challenge.hint}\n")
