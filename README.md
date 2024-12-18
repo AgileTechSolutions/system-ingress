@@ -11,7 +11,7 @@ A Matrix-style hacking simulation game where you attempt to infiltrate a secured
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/Agile-Tech-System-Ingress-Matrix.git
+git clone https://github.com/AgileTechSolutions/system-ingress.git
 cd Agile-Tech-System-Ingress-Matrix
 ```
 
